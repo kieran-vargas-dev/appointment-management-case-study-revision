@@ -34,9 +34,8 @@ public class Doctor {
     @Column(name = "SPECIALTY")
     private String specialty;
 
-    // @OneToMany(mappedBy = "Doctor", cascade = CascadeType.ALL)
-    // @Column(name = "APPOINTMENTS")
-    // private ArrayList<Appointment> appointments;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
     // Constructors
     public Doctor() {
@@ -91,12 +90,12 @@ public class Doctor {
         this.specialty = specialty;
     }
 
-    // public ArrayList<Appointment> getAppointments() {
-    // return appointments;
-    // }
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
 
-    // public void setAppointments(ArrayList<Appointment> appointments) {
-    // this.appointments = appointments;
-    // }
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 
 }

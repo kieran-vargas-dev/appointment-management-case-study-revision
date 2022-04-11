@@ -28,9 +28,8 @@ public class Patient {
     @Column(name = "EMAIL")
     private String email;
 
-    // @OneToMany(mappedBy = "Patient", cascade = CascadeType.ALL)
-    // @Column(name = "APPOINTMENTS")
-    // private ArrayList<Appointment> appointments;
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
     // Constructors
 
@@ -71,12 +70,12 @@ public class Patient {
         this.email = email;
     }
 
-    // public ArrayList<Appointment> getAppointments() {
-    // return appointments;
-    // }
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
 
-    // public void setAppointments(ArrayList<Appointment> appointments) {
-    // this.appointments = appointments;
-    // }
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 
 }

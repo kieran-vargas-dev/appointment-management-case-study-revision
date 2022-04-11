@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,10 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "APPOINTMENT_PATIENT")
+    private Patient patient;
 
     @Column(name = "PATIENT_ID")
     private long patientId;
@@ -31,6 +37,10 @@ public class Appointment {
 
     @Column(name = "APPOINTMENT_DATE")
     private Date appointmentDate;
+
+    @ManyToOne
+    @JoinColumn(name = "APPOINTMENT_DOCTOR")
+    private Doctor doctor;
 
     @Column(name = "DOCTOR_ID")
     private long doctorId;
@@ -50,6 +60,14 @@ public class Appointment {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public long getPatientId() {
@@ -92,6 +110,14 @@ public class Appointment {
         this.appointmentDate = appointmentDate;
     }
 
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
     public long getDoctorId() {
         return doctorId;
     }
@@ -127,14 +153,17 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(long id, long patientId, String patientFirstName, String patientLastName, String patientEmail,
-            Date appointmentDate, long doctorId, String doctorFirstName, String doctorLastName, String doctorEmail) {
+    public Appointment(long id, Patient patient, long patientId, String patientFirstName, String patientLastName,
+            String patientEmail, Date appointmentDate, Doctor doctor, long doctorId, String doctorFirstName,
+            String doctorLastName, String doctorEmail) {
         this.id = id;
+        this.patient = patient;
         this.patientId = patientId;
         this.patientFirstName = patientFirstName;
         this.patientLastName = patientLastName;
         this.patientEmail = patientEmail;
         this.appointmentDate = appointmentDate;
+        this.doctor = doctor;
         this.doctorId = doctorId;
         this.doctorFirstName = doctorFirstName;
         this.doctorLastName = doctorLastName;

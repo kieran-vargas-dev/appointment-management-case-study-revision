@@ -1,5 +1,7 @@
 package com.kieran_vargas.schedulercapstonerevision.controllers;
 
+import java.security.Principal;
+
 import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.services.AppointmentService;
 
@@ -35,8 +37,9 @@ public class AppointmentController {
     }
 
     @PostMapping("/saveAppointment")
-    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment) {
+    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment, Principal principal) {
         appointmentService.saveAppointment(appointment);
+        String appointmentDoctor = principal.getName();
         return "redirect:/";
     }
 
