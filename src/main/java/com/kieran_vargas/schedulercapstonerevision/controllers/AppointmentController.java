@@ -39,7 +39,6 @@ public class AppointmentController {
     @PostMapping("/saveAppointment")
     public String saveAppointment(@ModelAttribute("appointment") Appointment appointment, Principal principal) {
         appointmentService.saveAppointment(appointment);
-        String appointmentDoctor = principal.getName();
         return "redirect:/";
     }
 
