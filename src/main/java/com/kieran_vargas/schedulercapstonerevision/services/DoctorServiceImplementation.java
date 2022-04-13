@@ -1,44 +1,64 @@
 package com.kieran_vargas.schedulercapstonerevision.services;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 import com.kieran_vargas.schedulercapstonerevision.dtos.DoctorRegistrationDto;
-import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
+import com.kieran_vargas.schedulercapstonerevision.repository.DoctorRepository;
+import com.kieran_vargas.schedulercapstonerevision.security.DoctorRole;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DoctorServiceImplementation implements DoctorService {
 
-    @Override
-    public List<Appointment> getDoctorAppointments(long id) {
-        // TODO Auto-generated method stub
-        return null;
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+    private PasswordEncoder passwordEncoder;
+
+    public DoctorServiceImplementation(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+        this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Override
-    public Appointment getAppointmentById(long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public Doctor findByEmail(String email) {
-        // TODO Auto-generated method stub
-        return null;
+        return doctorRepository.findByEmail(email);
     }
 
-    @Override
     public Doctor save(DoctorRegistrationDto registration) {
-        // TODO Auto-generated method stub
-        return null;
+        Doctor doctor = new Doctor();
+        doctor.setFirstName(registration.getFirstName());
+        doctor.setLastName(registration.getLastName());
+        doctor.setEmail(registration.getEmail());
+        doctor.setPassword(passwordEncoder.encode(registration.getPassword()));
+        doctor.setRoles(Arrays.asList(new DoctorRole("ROLE_DOCTOR")));
+        return doctorRepository.save(doctor);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Doctor doctor = doctorRepository.findByEmail(email);
+        if (doctor == null) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        return new org.springframework.security.core.userdetails.User(doctor.getEmail(),
+                doctor.getPassword(),
+                mapRolesToAuthorities(doctor.getRoles()));
     }
 
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<DoctorRole> roles) {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+    }
 }

@@ -54,7 +54,11 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/13/2022 End of School Day: 40% complete
+Continuing progress implementing Spring Security and user roles so that I have persistent user information to work with. I've spent a long time looking at various tutorials and none
+really seem to cover this type of implementation, so hopefully I can get some more specific guidance tomorrow. As with yesterday, once persistent users are implemented, most of the rest of the code should write itself. Need to write front-end interface, unit tests, and integration tests.
+
 4/12/2022 End of School Day: 35% complete
 Baseline functionality for appointment CRUD operations implemented, fully implementing the desired displays is contingent upon ironing out the registration/login functionality.
 Once I have persistent users implemented, it should be fairly quick refactoring to get the exact views that I want sorted out (in terms of logic at least), and that should easily
-elevate me to 70 - 75% completion. After that I'll be needing to implement unit and integration tests, and git a visually clean front-end up and running.
+elevate me to 70 - 75% completion. After that I'll be needing to implement unit and integration tests, and get a visually clean front-end up and running.
