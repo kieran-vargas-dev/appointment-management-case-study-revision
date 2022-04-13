@@ -51,3 +51,10 @@ The doctor and patient will both be presented with a list of all of their upcomi
   may need for them.
 
 - As a doctor, I want to be notified if something in the scheduling of the next three days has changed.
+
+### Progress updates
+
+4/12/2022 End of School Day: 35% complete
+Baseline functionality for appointment CRUD operations implemented, fully implementing the desired displays is contingent upon ironing out the registration/login functionality.
+Once I have persistent users implemented, it should be fairly quick refactoring to get the exact views that I want sorted out (in terms of logic at least), and that should easily
+elevate me to 70 - 75% completion. After that I'll be needing to implement unit and integration tests, and git a visually clean front-end up and running.
