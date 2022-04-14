@@ -54,6 +54,9 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/14/2022 End of School Day: 40% complete
+Spent most of the day taking down what I had been working on after discovering what I was trying to implement wasn't really possible within the constraints of Spring Security. This is hopefully the last major revision this project will have to go through, five rebuilds later. I'll have more free time tonight than I've had the previous two nights so I'm going to try and get this registration up and running by the end of the night, so that I can begin building in earnest. Once again, after this is done, I'll need to write up front-end interfaces, unit tests, and integration tests.
+
 4/13/2022 End of School Day: 40% complete
 Continuing progress implementing Spring Security and user roles so that I have persistent user information to work with. I've spent a long time looking at various tutorials and none
 really seem to cover this type of implementation, so hopefully I can get some more specific guidance tomorrow. As with yesterday, once persistent users are implemented, most of the rest of the code should write itself. Need to write front-end interface, unit tests, and integration tests.
