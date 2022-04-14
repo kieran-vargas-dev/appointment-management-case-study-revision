@@ -2,7 +2,7 @@ package com.kieran_vargas.schedulercapstonerevision.services;
 
 import java.util.List;
 
-import com.kieran_vargas.schedulercapstonerevision.dtos.DoctorRegistrationDto;
+import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
 import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
 
@@ -16,6 +16,6 @@ public interface DoctorService extends UserDetailsService {
 
     Doctor findByEmail(String email);
 
-    Doctor save(DoctorRegistrationDto registration);
+    Doctor save(UserRegistrationDto registration);
 
 }

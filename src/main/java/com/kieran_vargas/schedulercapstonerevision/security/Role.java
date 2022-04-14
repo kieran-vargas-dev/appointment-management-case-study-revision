@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class DoctorRole {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
-    public DoctorRole() {
+    public Role() {
     }
 
-    public DoctorRole(String name) {
+    public Role(String name) {
         this.name = name;
     }
 
@@ -37,7 +37,7 @@ public class DoctorRole {
 
     @Override
     public String toString() {
-        return "com.kieran_vargas.schedulercapstonerevision.Role{" +
+        return "com.example.demo.security.Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -3,8 +3,8 @@ package com.kieran_vargas.schedulercapstonerevision.controllers;
 import javax.validation.Valid;
 
 import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
-import com.kieran_vargas.schedulercapstonerevision.models.Patient;
-import com.kieran_vargas.schedulercapstonerevision.services.PatientService;
+import com.kieran_vargas.schedulercapstonerevision.security.User;
+import com.kieran_vargas.schedulercapstonerevision.security.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/registration")
-public class PatientRegistrationController {
+public class UserRegistrationController {
 
     @Autowired
-    private PatientService patientService;
+    private UserService userService;
 
-    @ModelAttribute("patient")
-    public UserRegistrationDto patientRegistrationDto() {
+    @ModelAttribute("user")
+    public UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
     }
 
@@ -33,10 +33,10 @@ public class PatientRegistrationController {
     }
 
     @PostMapping
-    public String registerPatientAccount(@ModelAttribute("patient") @Valid UserRegistrationDto patientDto,
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
             BindingResult result) {
 
-        Patient existing = patientService.findByEmail(patientDto.getEmail());
+        User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
@@ -45,7 +45,7 @@ public class PatientRegistrationController {
             return "registration";
         }
 
-        patientService.save(patientDto);
+        userService.save(userDto);
         return "redirect:/registration?success";
     }
 }

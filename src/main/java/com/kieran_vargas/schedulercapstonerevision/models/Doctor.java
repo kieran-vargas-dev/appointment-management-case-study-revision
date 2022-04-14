@@ -16,14 +16,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
-import com.kieran_vargas.schedulercapstonerevision.security.DoctorRole;
+import com.kieran_vargas.schedulercapstonerevision.security.Role;
 
 @Entity
 @Table(name = "DOCTORS")
 public class Doctor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "FIRST_NAME")
@@ -35,11 +35,8 @@ public class Doctor {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "PRACTICE")
-    private String practice;
-
-    @Column(name = "SPECIALTY")
-    private String specialty;
+    @Column(name = "ADDRESS")
+    private String address;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
@@ -48,13 +45,24 @@ public class Doctor {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<DoctorRole> roles;
+    private Collection<Role> roles;
 
     // Constructors
     public Doctor() {
     }
 
-    // Getters and Setters
+    public Doctor(long id, String firstName, String lastName, String email, String address,
+            List<Appointment> appointments, String password, Collection<Role> roles) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.appointments = appointments;
+        this.password = password;
+        this.roles = roles;
+    }
+
     public long getId() {
         return id;
     }
@@ -87,20 +95,12 @@ public class Doctor {
         this.email = email;
     }
 
-    public String getPractice() {
-        return practice;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPractice(String practice) {
-        this.practice = practice;
-    }
-
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<Appointment> getAppointments() {
@@ -119,11 +119,11 @@ public class Doctor {
         this.password = password;
     }
 
-    public Collection<DoctorRole> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<DoctorRole> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 

@@ -2,12 +2,14 @@ package com.kieran_vargas.schedulercapstonerevision.services;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import com.kieran_vargas.schedulercapstonerevision.dtos.DoctorRegistrationDto;
+import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
+import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
 import com.kieran_vargas.schedulercapstonerevision.repository.DoctorRepository;
-import com.kieran_vargas.schedulercapstonerevision.security.DoctorRole;
+import com.kieran_vargas.schedulercapstonerevision.security.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,13 +37,13 @@ public class DoctorServiceImplementation implements DoctorService {
         return doctorRepository.findByEmail(email);
     }
 
-    public Doctor save(DoctorRegistrationDto registration) {
+    public Doctor save(UserRegistrationDto registration) {
         Doctor doctor = new Doctor();
         doctor.setFirstName(registration.getFirstName());
         doctor.setLastName(registration.getLastName());
         doctor.setEmail(registration.getEmail());
         doctor.setPassword(passwordEncoder.encode(registration.getPassword()));
-        doctor.setRoles(Arrays.asList(new DoctorRole("ROLE_DOCTOR")));
+        doctor.setRoles(Arrays.asList(new Role("ROLE_DOCTOR")));
         return doctorRepository.save(doctor);
     }
 
@@ -56,9 +58,21 @@ public class DoctorServiceImplementation implements DoctorService {
                 mapRolesToAuthorities(doctor.getRoles()));
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<DoctorRole> roles) {
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Appointment> getDoctorAppointments(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Appointment getAppointmentById(long id) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

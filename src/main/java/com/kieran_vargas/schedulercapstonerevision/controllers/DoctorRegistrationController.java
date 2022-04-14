@@ -2,7 +2,7 @@ package com.kieran_vargas.schedulercapstonerevision.controllers;
 
 import javax.validation.Valid;
 
-import com.kieran_vargas.schedulercapstonerevision.dtos.DoctorRegistrationDto;
+import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
 import com.kieran_vargas.schedulercapstonerevision.services.DoctorService;
 
@@ -16,24 +16,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("/doctor-registration")
 public class DoctorRegistrationController {
 
     @Autowired
     private DoctorService doctorService;
 
     @ModelAttribute("doctor")
-    public DoctorRegistrationDto doctorRegistrationDto() {
-        return new DoctorRegistrationDto();
+    public UserRegistrationDto doctorRegistrationDto() {
+        return new UserRegistrationDto();
     }
 
     @GetMapping
     public String showRegistrationForm(Model model) {
-        return "registration";
+        return "doctor-registration";
     }
 
     @PostMapping
-    public String registerDoctorAccount(@ModelAttribute("doctor") @Valid DoctorRegistrationDto doctorDto,
+    public String registerDoctorAccount(@ModelAttribute("doctor") @Valid UserRegistrationDto doctorDto,
             BindingResult result) {
 
         Doctor existing = doctorService.findByEmail(doctorDto.getEmail());
@@ -42,10 +42,10 @@ public class DoctorRegistrationController {
         }
 
         if (result.hasErrors()) {
-            return "registration";
+            return "doctor-registration";
         }
 
         doctorService.save(doctorDto);
-        return "redirect:/registration?success";
+        return "redirect:/doctor-registration?success";
     }
 }
