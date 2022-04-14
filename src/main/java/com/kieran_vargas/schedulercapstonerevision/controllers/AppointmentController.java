@@ -23,7 +23,7 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/doctor-appointments")
     public String viewHomePage(Model model) {
         model.addAttribute("listAppointments", appointmentService.getAllAppointments());
         return "index";
