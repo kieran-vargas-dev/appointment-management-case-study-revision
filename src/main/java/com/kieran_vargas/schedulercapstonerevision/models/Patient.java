@@ -35,10 +35,13 @@ public class Patient {
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+
     @Column(name = "ADDRESS")
     private String address;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
     private String password;
@@ -47,15 +50,17 @@ public class Patient {
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    // Constructors
     public Patient() {
     }
 
-    public Patient(long id, String firstName, String lastName, String email, String address,
+    public Patient(long id, String firstName, String lastName, String email, String phoneNumber, String address,
             List<Appointment> appointments, String password, Collection<Role> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.appointments = appointments;
         this.password = password;
@@ -92,6 +97,14 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {

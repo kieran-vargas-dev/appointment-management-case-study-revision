@@ -35,6 +35,9 @@ public class Doctor {
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+
     @Column(name = "ADDRESS")
     private String address;
 
@@ -51,12 +54,13 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(long id, String firstName, String lastName, String email, String address,
+    public Doctor(long id, String firstName, String lastName, String email, String phoneNumber, String address,
             List<Appointment> appointments, String password, Collection<Role> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.appointments = appointments;
         this.password = password;
@@ -93,6 +97,14 @@ public class Doctor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {

@@ -54,6 +54,9 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/14/2022 End of School Day: 50% complete
+Registration and login for a basic user is implemented, I need to implement logic to register this user as either a patient or doctor from the form data and then leverage Spring Security to protect various endpoints and create permissions for the two different types of user. Most of today was centered on engineering this functionality, I had a few unexpected things spring up but it's looking like pretty smooth sailing from here.
+
 4/14/2022 End of School Day: 40% complete
 Spent most of the day taking down what I had been working on after discovering what I was trying to implement wasn't really possible within the constraints of Spring Security. This is hopefully the last major revision this project will have to go through, five rebuilds later. I'll have more free time tonight than I've had the previous two nights so I'm going to try and get this registration up and running by the end of the night, so that I can begin building in earnest. Once again, after this is done, I'll need to write up front-end interfaces, unit tests, and integration tests.
 

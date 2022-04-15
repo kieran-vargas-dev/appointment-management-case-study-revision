@@ -28,9 +28,11 @@ public class UserRegistrationDto {
     @NotEmpty
     private String email;
 
-    @Email
     @NotEmpty
-    private String confirmEmail;
+    private String phone;
+
+    @NotEmpty
+    private String address;
 
     @AssertTrue
     private Boolean terms;
@@ -75,12 +77,20 @@ public class UserRegistrationDto {
         this.email = email;
     }
 
-    public String getConfirmEmail() {
-        return confirmEmail;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setConfirmEmail(String confirmEmail) {
-        this.confirmEmail = confirmEmail;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Boolean getTerms() {

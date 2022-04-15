@@ -1,7 +1,5 @@
 package com.kieran_vargas.schedulercapstonerevision.models;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +17,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "APPOINTMENT_DATE")
+    private String appointmentDate;
+
     @ManyToOne
     @JoinColumn(name = "APPOINTMENT_PATIENT")
     private Patient patient;
@@ -35,8 +36,11 @@ public class Appointment {
     @Column(name = "PATIENT_EMAIL")
     private String patientEmail;
 
-    @Column(name = "APPOINTMENT_DATE")
-    private Date appointmentDate;
+    @Column(name = "PATIENT_PHONE")
+    private String patientPhone;
+
+    @Column(name = "PATIENT_ADDRESS")
+    private String patientAddress;
 
     @ManyToOne
     @JoinColumn(name = "APPOINTMENT_DOCTOR")
@@ -54,12 +58,51 @@ public class Appointment {
     @Column(name = "DOCTOR_EMAIL")
     private String doctorEmail;
 
+    @Column(name = "DOCTOR_PHONE")
+    private String doctorPhone;
+
+    @Column(name = "DOCTOR_ADDRESS")
+    private String doctorAddress;
+
+    public Appointment() {
+    }
+
+    public Appointment(long id, String appointmentDate, Patient patient, long patientId, String patientFirstName,
+            String patientLastName, String patientEmail, String patientPhone, String patientAddress, Doctor doctor,
+            long doctorId, String doctorFirstName, String doctorLastName, String doctorEmail, String doctorPhone,
+            String doctorAddress) {
+        this.id = id;
+        this.appointmentDate = appointmentDate;
+        this.patient = patient;
+        this.patientId = patientId;
+        this.patientFirstName = patientFirstName;
+        this.patientLastName = patientLastName;
+        this.patientEmail = patientEmail;
+        this.patientPhone = patientPhone;
+        this.patientAddress = patientAddress;
+        this.doctor = doctor;
+        this.doctorId = doctorId;
+        this.doctorFirstName = doctorFirstName;
+        this.doctorLastName = doctorLastName;
+        this.doctorEmail = doctorEmail;
+        this.doctorPhone = doctorPhone;
+        this.doctorAddress = doctorAddress;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 
     public Patient getPatient() {
@@ -102,12 +145,20 @@ public class Appointment {
         this.patientEmail = patientEmail;
     }
 
-    public Date getAppointmentDate() {
-        return appointmentDate;
+    public String getPatientPhone() {
+        return patientPhone;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setPatientPhone(String patientPhone) {
+        this.patientPhone = patientPhone;
+    }
+
+    public String getPatientAddress() {
+        return patientAddress;
+    }
+
+    public void setPatientAddress(String patientAddress) {
+        this.patientAddress = patientAddress;
     }
 
     public Doctor getDoctor() {
@@ -150,24 +201,20 @@ public class Appointment {
         this.doctorEmail = doctorEmail;
     }
 
-    public Appointment() {
+    public String getDoctorPhone() {
+        return doctorPhone;
     }
 
-    public Appointment(long id, Patient patient, long patientId, String patientFirstName, String patientLastName,
-            String patientEmail, Date appointmentDate, Doctor doctor, long doctorId, String doctorFirstName,
-            String doctorLastName, String doctorEmail) {
-        this.id = id;
-        this.patient = patient;
-        this.patientId = patientId;
-        this.patientFirstName = patientFirstName;
-        this.patientLastName = patientLastName;
-        this.patientEmail = patientEmail;
-        this.appointmentDate = appointmentDate;
-        this.doctor = doctor;
-        this.doctorId = doctorId;
-        this.doctorFirstName = doctorFirstName;
-        this.doctorLastName = doctorLastName;
-        this.doctorEmail = doctorEmail;
+    public void setDoctorPhone(String doctorPhone) {
+        this.doctorPhone = doctorPhone;
+    }
+
+    public String getDoctorAddress() {
+        return doctorAddress;
+    }
+
+    public void setDoctorAddress(String doctorAddress) {
+        this.doctorAddress = doctorAddress;
     }
 
 }
