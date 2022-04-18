@@ -53,6 +53,8 @@ public class UserRegistrationController {
             return "registration";
         }
 
+        userService.saveUser(userDto);
+
         if (userDto.getUserType().equals("doctor")) {
             doctorService.save(userDto);
         }
@@ -61,7 +63,6 @@ public class UserRegistrationController {
             patientService.save(userDto);
         }
 
-        userService.saveUser(userDto);
         return "redirect:/registration?success";
 
     }

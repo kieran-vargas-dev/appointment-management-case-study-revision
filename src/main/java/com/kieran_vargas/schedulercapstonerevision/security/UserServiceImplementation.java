@@ -5,10 +5,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
-import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
-import com.kieran_vargas.schedulercapstonerevision.models.Patient;
-import com.kieran_vargas.schedulercapstonerevision.repository.DoctorRepository;
-import com.kieran_vargas.schedulercapstonerevision.repository.PatientRepository;
 import com.kieran_vargas.schedulercapstonerevision.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +23,6 @@ public class UserServiceImplementation implements UserService {
 
     private UserRepository userRepository;
 
-    private DoctorRepository doctorRepository;
-
-    private PatientRepository patientRepository;
-
     private PasswordEncoder passwordEncoder;
 
     public UserServiceImplementation(UserRepository userRepository) {
@@ -48,32 +40,13 @@ public class UserServiceImplementation implements UserService {
         user.setLastName(registration.getLastName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        if (registration.getUserType().equals("doctor")) {
+            user.setRoles(Arrays.asList(new Role("ROLE_DOCTOR")));
+        }
+        if (registration.getUserType().equals("patient")) {
+            user.setRoles(Arrays.asList(new Role("ROLE_PATIENT")));
+        }
         return userRepository.save(user);
-    }
-
-    public Doctor saveDoctor(UserRegistrationDto registration) {
-        Doctor doctor = new Doctor();
-        doctor.setFirstName(registration.getFirstName());
-        doctor.setLastName(registration.getLastName());
-        doctor.setEmail(registration.getEmail());
-        doctor.setPassword(passwordEncoder.encode(registration.getPassword()));
-        doctor.setAddress(registration.getAddress());
-        doctor.setPhoneNumber(registration.getPhone());
-        doctor.setRoles(Arrays.asList(new Role("ROLE_DOCTOR")));
-        return doctorRepository.save(doctor);
-    }
-
-    public Patient savePatient(UserRegistrationDto registration) {
-        Patient patient = new Patient();
-        patient.setFirstName(registration.getFirstName());
-        patient.setLastName(registration.getLastName());
-        patient.setEmail(registration.getEmail());
-        patient.setPassword(passwordEncoder.encode(registration.getPassword()));
-        patient.setAddress(registration.getAddress());
-        patient.setPhoneNumber(registration.getPhone());
-        patient.setRoles(Arrays.asList(new Role("ROLE_PATIENT")));
-        return patientRepository.save(patient);
     }
 
     @Override

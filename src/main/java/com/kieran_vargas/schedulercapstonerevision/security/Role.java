@@ -10,6 +10,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
 
     public Role() {
@@ -37,7 +38,7 @@ public class Role {
 
     @Override
     public String toString() {
-        return "com.example.demo.security.Role{" +
+        return "com.kieran_vargas.schedulercapstonerevision.security.Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

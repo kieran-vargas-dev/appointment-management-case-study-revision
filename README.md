@@ -60,6 +60,10 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/18/2022 End of School Day: 65% complete
+
+Registration bug ran deeper than initially anticipated, I started experiencing complete failure to register so I had to iron that out before proceeding. On the bright side, user registration now works perfectly as intended with zero failures. I still need to write logic for retrieving and manipulating data specific to the logged in user, as well as the various role permissions, but this shouldn't take very long now that I can actually proceed with it.
+
 4/17/2022 End of Day: 60% complete
 
 Registration that creates users of different types is implemented. There are currently two bugs that might actually have the same cause, namely, sporadic registration failure and ID jumping in the database; but as of yet I've been unable to ascertain exactly what's going wrong. I'll ask tomorrow during class, perhaps somebody else has encountered this. Next step is writing logic that leverages these new user IDs to store and load data as well as protecting certain endpoints and delegating specific permissions based on the type of user, and figuring out how to use the principal user to load the correct data for the logged in user. This should be straightforward, I think, and then it's just a matter of writing tests and prettier front-end.

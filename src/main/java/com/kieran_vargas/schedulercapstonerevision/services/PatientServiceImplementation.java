@@ -42,8 +42,9 @@ public class PatientServiceImplementation implements PatientService {
         patient.setFirstName(registration.getFirstName());
         patient.setLastName(registration.getLastName());
         patient.setEmail(registration.getEmail());
+        patient.setPhoneNumber(registration.getPhone());
+        patient.setAddress(registration.getAddress());
         patient.setPassword(passwordEncoder.encode(registration.getPassword()));
-        patient.setRoles(Arrays.asList(new Role("ROLE_PATIENT")));
         return patientRepository.save(patient);
     }
 

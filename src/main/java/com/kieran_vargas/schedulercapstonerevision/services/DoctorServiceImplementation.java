@@ -42,8 +42,9 @@ public class DoctorServiceImplementation implements DoctorService {
         doctor.setFirstName(registration.getFirstName());
         doctor.setLastName(registration.getLastName());
         doctor.setEmail(registration.getEmail());
+        doctor.setPhoneNumber(registration.getPhone());
+        doctor.setAddress(registration.getAddress());
         doctor.setPassword(passwordEncoder.encode(registration.getPassword()));
-        doctor.setRoles(Arrays.asList(new Role("ROLE_DOCTOR")));
         return doctorRepository.save(doctor);
     }
 

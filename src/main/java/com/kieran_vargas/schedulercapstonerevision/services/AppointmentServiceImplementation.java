@@ -40,7 +40,6 @@ public class AppointmentServiceImplementation implements AppointmentService {
     @Override
     public void deleteAppointmentById(long id) {
         this.appointmentRepository.deleteById(id);
-        ;
     }
 
 }
