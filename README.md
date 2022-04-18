@@ -1,5 +1,9 @@
 # appointment-management-case-study
 
+- [Project Overview] (#Project-Mission) -[Stretch Goals] (#Stretch-Goals) -[MVP] (#Minimum-Viable-Product) -[User Stories] (#User-Stories)
+  - [Deliverable Goals] (#Deliverable-Goals)
+  - [Stretch Goals] (#Stretch-Goals) -[Development Progress] (#Progress-updates)
+
 ## Project Mission
 
 ### Stretch Goals
