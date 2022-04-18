@@ -62,7 +62,7 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 4/18/2022 End of School Day: 65% complete
 
-Registration bug ran deeper than initially anticipated, I started experiencing complete failure to register so I had to iron that out before proceeding. On the bright side, user registration now works perfectly as intended with zero failures. I still need to write logic for retrieving and manipulating data specific to the logged in user, as well as the various role permissions, but this shouldn't take very long now that I can actually proceed with it.
+Registration bug ran deeper than initially anticipated, I started experiencing complete failure to register so I had to iron that out before proceeding. On the bright side, user registration now works perfectly as intended with zero failures. I still need to write logic for retrieving and manipulating data specific to the logged in user, as well as the various role permissions, but this shouldn't take very long now that I can actually proceed with it. I've also reformatted this README and added navigation to it for easy reading.
 
 4/17/2022 End of Day: 60% complete
 
