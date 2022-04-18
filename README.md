@@ -1,5 +1,9 @@
 # appointment-management-case-study
 
+- [Project Overview] (#Project-Mission) -[Stretch Goals] (#Stretch-Goals) -[MVP] (#Minimum-Viable-Product) -[User Stories] (#User-Stories)
+  - [Deliverable Goals] (#Deliverable-Goals)
+  - [Stretch Goals] (#Stretch-Goals) -[Development Progress] (#Progress-updates)
+
 ## Project Mission
 
 ### Stretch Goals
@@ -53,19 +57,24 @@ The doctor and patient will both be presented with a list of all of their upcomi
 ### Progress updates
 
 4/17/2022 End of Day: 60% complete
+
 Registration that creates users of different types is implemented. There are currently two bugs that might actually have the same cause, namely, sporadic registration failure and ID jumping in the database; but as of yet I've been unable to ascertain exactly what's going wrong. I'll ask tomorrow during class, perhaps somebody else has encountered this. Next step is writing logic that leverages these new user IDs to store and load data as well as protecting certain endpoints and delegating specific permissions based on the type of user, and figuring out how to use the principal user to load the correct data for the logged in user. This should be straightforward, I think, and then it's just a matter of writing tests and prettier front-end.
 
 4/15/2022 End of School Day: 50% complete
+
 Registration and login for a basic user is implemented, I need to implement logic to register this user as either a patient or doctor from the form data and then leverage Spring Security to protect various endpoints and create permissions for the two different types of user. Most of today was centered on engineering this functionality, I had a few unexpected things spring up but it's looking like pretty smooth sailing from here.
 
 4/14/2022 End of School Day: 40% complete
+
 Spent most of the day taking down what I had been working on after discovering what I was trying to implement wasn't really possible within the constraints of Spring Security. This is hopefully the last major revision this project will have to go through, five rebuilds later. I'll have more free time tonight than I've had the previous two nights so I'm going to try and get this registration up and running by the end of the night, so that I can begin building in earnest. Once again, after this is done, I'll need to write up front-end interfaces, unit tests, and integration tests.
 
 4/13/2022 End of School Day: 40% complete
+
 Continuing progress implementing Spring Security and user roles so that I have persistent user information to work with. I've spent a long time looking at various tutorials and none
 really seem to cover this type of implementation, so hopefully I can get some more specific guidance tomorrow. As with yesterday, once persistent users are implemented, most of the rest of the code should write itself. Need to write front-end interface, unit tests, and integration tests.
 
 4/12/2022 End of School Day: 35% complete
+
 Baseline functionality for appointment CRUD operations implemented, fully implementing the desired displays is contingent upon ironing out the registration/login functionality.
 Once I have persistent users implemented, it should be fairly quick refactoring to get the exact views that I want sorted out (in terms of logic at least), and that should easily
 elevate me to 70 - 75% completion. After that I'll be needing to implement unit and integration tests, and get a visually clean front-end up and running.
