@@ -102,8 +102,10 @@
                        th:each="error : ${#fields.errors('confirmPassword')}"
                        th:text="${error}">Validation error</p>
                 </div>
-                <div><input type="radio" name="user-type" value="doctor"  />Doctor</div>
-                <div><input type="radio" name="user-type" value="patient" />Patient</div>
+                <div class="form-group">
+                    <div><input type="radio" name="user-type" value="doctor"  th:field="*{userType}"/>Doctor</div>
+                    <div><input type="radio" name="user-type" value="patient" th:field="*{userType}"/>Patient</div>
+                </div>
                 <div class="form-group"
                      th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
                     <input id="terms" type="checkbox" th:field="*{terms}" />   <label

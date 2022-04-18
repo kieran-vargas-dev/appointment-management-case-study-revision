@@ -64,7 +64,7 @@ public class UserServiceImplementation implements UserService {
         return doctorRepository.save(doctor);
     }
 
-    public Patient savePatientr(UserRegistrationDto registration) {
+    public Patient savePatient(UserRegistrationDto registration) {
         Patient patient = new Patient();
         patient.setFirstName(registration.getFirstName());
         patient.setLastName(registration.getLastName());

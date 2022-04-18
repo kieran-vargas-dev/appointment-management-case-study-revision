@@ -8,7 +8,6 @@ import com.kieran_vargas.schedulercapstonerevision.security.FieldMatch;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
-        @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
 public class UserRegistrationDto {
 
@@ -33,6 +32,9 @@ public class UserRegistrationDto {
 
     @NotEmpty
     private String address;
+
+    @NotEmpty
+    private String userType;
 
     @AssertTrue
     private Boolean terms;
@@ -91,6 +93,14 @@ public class UserRegistrationDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public Boolean getTerms() {

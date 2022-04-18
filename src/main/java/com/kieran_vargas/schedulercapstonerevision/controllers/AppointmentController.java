@@ -39,7 +39,7 @@ public class AppointmentController {
     @PostMapping("/saveAppointment")
     public String saveAppointment(@ModelAttribute("appointment") Appointment appointment, Principal principal) {
         appointmentService.saveAppointment(appointment);
-        return "redirect:/";
+        return "redirect:/doctor-appointments";
     }
 
     @GetMapping("/updateAppointmentForm/{id}")
@@ -54,7 +54,7 @@ public class AppointmentController {
     @GetMapping("/deleteAppointment/{id}")
     public String deleteAppointment(@PathVariable(value = "id") long id) {
         this.appointmentService.deleteAppointmentById(id);
-        return "redirect:/";
+        return "redirect:/doctor-appointments";
     }
 
 }

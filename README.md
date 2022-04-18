@@ -54,7 +54,10 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
-4/14/2022 End of School Day: 50% complete
+4/17/2022 End of Day: 60% complete
+Registration that creates users of different types is implemented. There are currently two bugs that might actually have the same cause, namely, sporadic registration failure and ID jumping in the database; but as of yet I've been unable to ascertain exactly what's going wrong. I'll ask tomorrow during class, perhaps somebody else has encountered this. Next step is writing logic that leverages these new user IDs to store and load data as well as protecting certain endpoints and delegating specific permissions based on the type of user, and figuring out how to use the principal user to load the correct data for the logged in user. This should be straightforward, I think, and then it's just a matter of writing tests and prettier front-end.
+
+4/15/2022 End of School Day: 50% complete
 Registration and login for a basic user is implemented, I need to implement logic to register this user as either a patient or doctor from the form data and then leverage Spring Security to protect various endpoints and create permissions for the two different types of user. Most of today was centered on engineering this functionality, I had a few unexpected things spring up but it's looking like pretty smooth sailing from here.
 
 4/14/2022 End of School Day: 40% complete

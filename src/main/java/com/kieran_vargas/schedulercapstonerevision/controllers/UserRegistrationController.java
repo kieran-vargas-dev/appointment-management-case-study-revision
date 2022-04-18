@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
 import com.kieran_vargas.schedulercapstonerevision.security.User;
 import com.kieran_vargas.schedulercapstonerevision.security.UserService;
+import com.kieran_vargas.schedulercapstonerevision.services.DoctorService;
+import com.kieran_vargas.schedulercapstonerevision.services.PatientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,12 @@ public class UserRegistrationController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private DoctorService doctorService;
+
+    @Autowired
+    private PatientService patientService;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
@@ -45,7 +53,16 @@ public class UserRegistrationController {
             return "registration";
         }
 
+        if (userDto.getUserType().equals("doctor")) {
+            doctorService.save(userDto);
+        }
+
+        if (userDto.getUserType().equals("patient")) {
+            patientService.save(userDto);
+        }
+
         userService.saveUser(userDto);
         return "redirect:/registration?success";
+
     }
 }
