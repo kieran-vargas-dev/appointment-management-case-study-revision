@@ -60,6 +60,10 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/20/2022 End of School Day: 88% complete
+
+All of my user security and CRUD functionality is implemented without any failure. I still need to write tests and navigation functionality, as well as leverage Spring security to protect endpoints/extend permissions, but outside of that the only thing remaining to do is styling.
+
 4/19/2022 End of School Day: 65% complete
 
 I discovered I'd inadvertantly tied up my business logic and my security logic and it was preventing me from properly leveraging the JPA Repository "save" functionality for my tables, so I spent quite a bit of time disentangling those. They're now fully separated and everything is working as intended. Currently attempting to work through some odd user data persistence issues.
