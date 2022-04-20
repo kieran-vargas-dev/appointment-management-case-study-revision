@@ -7,9 +7,9 @@ import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
 
 public interface DoctorService {
 
-    List<Appointment> getDoctorAppointments(long id);
+    List<Doctor> getAllDoctors();
 
-    Appointment getAppointmentById(long id);
+    List<Appointment> getDoctorAppointments(long id);
 
     Doctor findByEmail(String email);
 

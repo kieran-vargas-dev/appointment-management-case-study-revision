@@ -20,6 +20,12 @@ public class Appointment {
     @Column(name = "APPOINTMENT_DATE")
     private String appointmentDate;
 
+    @Column(name = "APPOINTMENT_OVERVIEW")
+    private String appointmentOverview;
+
+    @Column(name = "PATIENT_SYMPTOMS")
+    private String patientSymptoms;
+
     @ManyToOne
     @JoinColumn(name = "APPOINTMENT_PATIENT")
     private Patient patient;
@@ -67,12 +73,14 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(long id, String appointmentDate, Patient patient, long patientId, String patientFirstName,
-            String patientLastName, String patientEmail, String patientPhone, String patientAddress, Doctor doctor,
-            long doctorId, String doctorFirstName, String doctorLastName, String doctorEmail, String doctorPhone,
-            String doctorAddress) {
+    public Appointment(long id, String appointmentDate, String appointmentOverview, String patientSymptoms,
+            Patient patient, long patientId, String patientFirstName, String patientLastName, String patientEmail,
+            String patientPhone, String patientAddress, Doctor doctor, long doctorId, String doctorFirstName,
+            String doctorLastName, String doctorEmail, String doctorPhone, String doctorAddress) {
         this.id = id;
         this.appointmentDate = appointmentDate;
+        this.appointmentOverview = appointmentOverview;
+        this.patientSymptoms = patientSymptoms;
         this.patient = patient;
         this.patientId = patientId;
         this.patientFirstName = patientFirstName;
@@ -103,6 +111,22 @@ public class Appointment {
 
     public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
+    }
+
+    public String getAppointmentOverview() {
+        return appointmentOverview;
+    }
+
+    public void setAppointmentOverview(String appointmentOverview) {
+        this.appointmentOverview = appointmentOverview;
+    }
+
+    public String getPatientSymptoms() {
+        return patientSymptoms;
+    }
+
+    public void setPatientSymptoms(String patientSymptoms) {
+        this.patientSymptoms = patientSymptoms;
     }
 
     public Patient getPatient() {

@@ -25,14 +25,8 @@ public class PatientServiceImplementation implements PatientService {
 
     @Override
     public List<Appointment> getPatientAppointments(long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Appointment getAppointmentById(long id) {
-        // TODO Auto-generated method stub
-        return null;
+        Patient patient = new Patient();
+        return patient.getAppointments();
     }
 
     @Override

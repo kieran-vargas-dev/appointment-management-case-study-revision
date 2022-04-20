@@ -35,22 +35,25 @@ public class AppointmentController {
         this.patientService = patientService;
     }
 
+    @GetMapping("/patient-appointments")
+    public String viewPatientAppointments(Principal principal, Model model) {
+        String email = principal.getName();
+        Patient patient = patientService.findByEmail(email);
+        List<Appointment> appointments = patient.getAppointments();
+        model.addAttribute("listAppointments", appointments);
+        return "patient-appointment-view";
+    }
+
     @GetMapping("/doctor-appointments")
-    public String viewHomePage(Principal principal, Model model) {
+    public String viewDoctorAppointments(Principal principal, Model model) {
         String email = principal.getName();
         Doctor doctor = doctorService.findByEmail(email);
         List<Appointment> appointments = doctor.getAppointments();
         model.addAttribute("listAppointments", appointments);
-        return "index";
+        return "doctor-appointment-view";
     }
 
-    // @GetMapping("/doctor-appointments")
-    // public String viewDoctorAppointments(Model model) {
-    // model.addAttribute("listAppointments", appointmentService.getAppointment());
-    // return "index";
-    // }
-
-    @GetMapping("/doctor-new-appointment")
+    @GetMapping("/addAppointmentForm")
     public String newAppointmentForm(Model model) {
         Appointment appointment = new Appointment();
         model.addAttribute("appointment", appointment);
@@ -63,12 +66,15 @@ public class AppointmentController {
         Doctor doctor = doctorService.findByEmail(doctorEmail);
         String patientEmail = appointment.getPatientEmail();
         Patient patient = patientService.findByEmail(patientEmail);
-        // List<Appointment> doctorAppointments = doctor.getAppointments();
+        List<Appointment> doctorAppointments = doctor.getAppointments();
+        List<Appointment> patientAppointments = patient.getAppointments();
+        appointment.setPatient(patient);
         appointment.setPatientId(patient.getId());
         appointment.setPatientFirstName(patient.getFirstName());
         appointment.setPatientLastName(patient.getLastName());
         appointment.setPatientPhone(patient.getPhoneNumber());
         appointment.setPatientAddress(patient.getAddress());
+        appointment.setDoctor(doctor);
         appointment.setDoctorId(doctor.getId());
         appointment.setDoctorFirstName(doctor.getFirstName());
         appointment.setDoctorLastName(doctor.getLastName());
@@ -76,7 +82,10 @@ public class AppointmentController {
         appointment.setDoctorPhone(doctor.getPhoneNumber());
         appointment.setDoctorAddress(doctor.getAddress());
         appointmentService.saveAppointment(appointment);
-        System.out.println(doctor.getAppointments());
+        patientAppointments.add(appointment);
+        doctorAppointments.add(appointment);
+        patientService.save(patient);
+        doctorService.save(doctor);
         return "redirect:/doctor-appointments";
         // save doctor instead of appointment so that a cascading save is run
     }
@@ -94,6 +103,13 @@ public class AppointmentController {
     public String deleteAppointment(@PathVariable(value = "id") long id) {
         this.appointmentService.deleteAppointmentById(id);
         return "redirect:/doctor-appointments";
+    }
+
+    @GetMapping("/viewAppointment/{id}")
+    public String showAppointmentForViewing(@PathVariable(value = "id") long id, Model model) {
+        Appointment appointment = appointmentService.getAppointmentById(id);
+        model.addAttribute("appointment", appointment);
+        return "patient-view-appointment";
     }
 
 }

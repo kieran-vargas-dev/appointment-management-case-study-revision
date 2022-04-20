@@ -30,13 +30,12 @@ public class DoctorServiceImplementation implements DoctorService {
     }
 
     @Override
-    public Appointment getAppointmentById(long id) {
-        // TODO Auto-generated method stub
-        return null;
+    public Doctor save(Doctor doctor) {
+        return doctorRepository.save(doctor);
     }
 
     @Override
-    public Doctor save(Doctor doctor) {
-        return doctorRepository.save(doctor);
+    public List<Doctor> getAllDoctors() {
+        return doctorRepository.findAll();
     }
 }

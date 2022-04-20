@@ -19,11 +19,23 @@
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{id}" />
 
+            <span>Appointment Date:</span><input type="text" th:field="*{appointmentDate}" class="form-control mb-4 col-4">
+
             <span>Patient ID:</span><input type="text" th:field="*{patientId}" class="form-control mb-4 col-4">
 
             <span>Patient First Name:</span><input type="text" th:field="*{patientFirstName}" class="form-control mb-4 col-4">
 
-            <span>Patient Email:</span><input type="text" th:field="*{patientEmail}" class="form-control mb-4 col-4">
+            <span>Patient Last Name:</span><input type="text" th:field="*{patientLastName}" class="form-control mb-4 col-4">
+
+            <span>Patient Symptoms:</span><input type="text" th:field="*{patientSymptoms}" class="form-control mb-4 col-4">
+
+            <span>Appointment Overview:</span><input type="text" th:field="*{appointmentOverview}" class="form-control mb-4 col-4">
+
+            <span>Patient Email:</span><input type="email" th:field="*{patientEmail}" class="form-control mb-4 col-4">
+
+            <span>Patient Phone Number:</span><input type="text" th:field="*{patientPhone}" class="form-control mb-4 col-4">
+
+            <span>Patient Address:</span><input type="text" th:field="*{patientAddress}" class="form-control mb-4 col-4">
 
             <button type="submit" class="btn btn-info col-2"> Update Appointment </button>
         </form>

@@ -15,11 +15,13 @@
 
         <form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="POST">
 
-            <input type="text" th:field="*{patientId}" placeholder="Patient ID" class="form-control mb-4 col-4">
-
-            <input type="text" th:field="*{patientFirstName}" placeholder="Patient First Name" class="form-control mb-4 col-4">
-
             <input type="email" th:field="*{patientEmail}" placeholder="Patient Email" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{appointmentDate}" placeholder="Appointment Date" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{patientSymptoms}" placeholder="Patient Symptoms" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{appointmentOverview}" placeholder="Appointment Overview" class="form-control mb-4 col-4">
 
             <button type="submit" class="btn btn-info col-2"> Save Appointment </button>
         </form>

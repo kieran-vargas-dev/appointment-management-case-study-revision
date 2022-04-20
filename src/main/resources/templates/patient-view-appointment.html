@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Appointment Scheduling</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Appointment Details</h1>
+        <hr>
+        <h2>Update Appointment</h2>
+
+        <form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="POST">
+
+            <!-- Add hidden form field to handle update -->
+            <input type="hidden" th:field="*{id}" />
+
+            <span>Appointment Date:</span><input type="text" th:field="*{appointmentDate}" class="form-control mb-4 col-4">
+            
+            <span>Appointment Overview:</span><input type="text" th:field="*{appointmentOverview}" class="form-control mb-4 col-4">
+
+            <span>Doctor ID:</span><input type="text" th:field="*{doctorId}" class="form-control mb-4 col-4">
+
+            <span>Doctor First Name:</span><input type="text" th:field="*{doctorFirstName}" class="form-control mb-4 col-4">
+
+            <span>Doctor Last Name:</span><input type="text" th:field="*{doctorLastName}" class="form-control mb-4 col-4">
+
+            <span>Doctor Email:</span><input type="text" th:field="*{doctorEmail}" class="form-control mb-4 col-4">
+
+            <span>Doctor Phone Number:</span><input type="text" th:field="*{doctorPhone}" class="form-control mb-4 col-4">
+
+            <span>Medical Practice:</span><input type="text" th:field="*{doctorAddress}" class="form-control mb-4 col-4">
+
+        </form>
+
+        <hr>
+
+        <a th:href="@{/patient-appointments}"> Back to Appointment List</a>
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,5 @@
 package com.kieran_vargas.schedulercapstonerevision.models;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,13 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-
-import com.kieran_vargas.schedulercapstonerevision.security.Role;
 
 @Entity
 @Table(name = "DOCTORS")
@@ -41,21 +35,23 @@ public class Doctor {
     @Column(name = "ADDRESS")
     private String address;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Appointment> appointments;
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    // @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id",
+    // referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name =
+    // "role_id", referencedColumnName = "id"))
+    // private Collection<Role> roles;
 
     // Constructors
     public Doctor() {
     }
 
     public Doctor(long id, String firstName, String lastName, String email, String phoneNumber, String address,
-            List<Appointment> appointments, String password, Collection<Role> roles) {
+            List<Appointment> appointments, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,7 +60,6 @@ public class Doctor {
         this.address = address;
         this.appointments = appointments;
         this.password = password;
-        this.roles = roles;
     }
 
     public long getId() {
@@ -131,12 +126,12 @@ public class Doctor {
         this.password = password;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
+    // public Collection<Role> getRoles() {
+    // return roles;
+    // }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
+    // public void setRoles(Collection<Role> roles) {
+    // this.roles = roles;
+    // }
 
 }

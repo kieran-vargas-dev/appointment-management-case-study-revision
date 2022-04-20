@@ -9,8 +9,6 @@ public interface PatientService {
 
     List<Appointment> getPatientAppointments(long id);
 
-    Appointment getAppointmentById(long id);
-
     Patient findByEmail(String email);
 
     Patient save(Patient patient);
