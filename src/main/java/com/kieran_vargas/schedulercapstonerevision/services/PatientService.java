@@ -2,13 +2,10 @@ package com.kieran_vargas.schedulercapstonerevision.services;
 
 import java.util.List;
 
-import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
 import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.models.Patient;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-public interface PatientService extends UserDetailsService {
+public interface PatientService {
 
     List<Appointment> getPatientAppointments(long id);
 
@@ -16,5 +13,5 @@ public interface PatientService extends UserDetailsService {
 
     Patient findByEmail(String email);
 
-    Patient save(UserRegistrationDto registration);
+    Patient save(Patient patient);
 }

@@ -88,7 +88,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "com.example.demo.security.User{" +
+        return "com.kieran_vargas.schedulercapstonerevision.security.User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

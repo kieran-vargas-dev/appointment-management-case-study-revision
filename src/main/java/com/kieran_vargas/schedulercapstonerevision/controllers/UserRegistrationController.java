@@ -3,6 +3,8 @@ package com.kieran_vargas.schedulercapstonerevision.controllers;
 import javax.validation.Valid;
 
 import com.kieran_vargas.schedulercapstonerevision.dtos.UserRegistrationDto;
+import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
+import com.kieran_vargas.schedulercapstonerevision.models.Patient;
 import com.kieran_vargas.schedulercapstonerevision.security.User;
 import com.kieran_vargas.schedulercapstonerevision.security.UserService;
 import com.kieran_vargas.schedulercapstonerevision.services.DoctorService;
@@ -56,14 +58,39 @@ public class UserRegistrationController {
         userService.saveUser(userDto);
 
         if (userDto.getUserType().equals("doctor")) {
-            doctorService.save(userDto);
+            Doctor doctor = createDoctorFromUserDto(userDto);
+            doctorService.save(doctor);
         }
 
         if (userDto.getUserType().equals("patient")) {
-            patientService.save(userDto);
+            Patient patient = createPatientFromUserDto(userDto);
+            patientService.save(patient);
         }
 
         return "redirect:/registration?success";
 
     }
+
+    public Doctor createDoctorFromUserDto(UserRegistrationDto userDto) {
+        Doctor doctor = new Doctor();
+        doctor.setEmail(userDto.getEmail());
+        doctor.setFirstName(userDto.getFirstName());
+        doctor.setLastName(userDto.getLastName());
+        doctor.setPhoneNumber(userDto.getPhone());
+        doctor.setAddress(userDto.getAddress());
+        doctor.setPassword(userDto.getPassword());
+        return doctor;
+    }
+
+    public Patient createPatientFromUserDto(UserRegistrationDto userDto) {
+        Patient patient = new Patient();
+        patient.setEmail(userDto.getEmail());
+        patient.setFirstName(userDto.getFirstName());
+        patient.setLastName(userDto.getLastName());
+        patient.setPhoneNumber(userDto.getPhone());
+        patient.setAddress(userDto.getAddress());
+        patient.setPassword(userDto.getPassword());
+        return patient;
+    }
+
 }

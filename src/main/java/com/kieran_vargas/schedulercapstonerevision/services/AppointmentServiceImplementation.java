@@ -42,4 +42,15 @@ public class AppointmentServiceImplementation implements AppointmentService {
         this.appointmentRepository.deleteById(id);
     }
 
+    @Override
+    public List<Appointment> getDoctorAppointments(long doctorId) {
+        return appointmentRepository.findByDoctorId(doctorId);
+    }
+
+    @Override
+    public List<Appointment> getPatientAppointments(long patientId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
