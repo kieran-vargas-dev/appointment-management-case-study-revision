@@ -5,8 +5,10 @@ import java.util.List;
 
 import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
+import com.kieran_vargas.schedulercapstonerevision.models.Patient;
 import com.kieran_vargas.schedulercapstonerevision.services.AppointmentService;
 import com.kieran_vargas.schedulercapstonerevision.services.DoctorService;
+import com.kieran_vargas.schedulercapstonerevision.services.PatientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +23,16 @@ public class AppointmentController {
 
     private DoctorService doctorService;
 
+    private PatientService patientService;
+
     private AppointmentService appointmentService;
 
     @Autowired
-    public AppointmentController(AppointmentService appointmentService, DoctorService doctorService) {
+    public AppointmentController(AppointmentService appointmentService, DoctorService doctorService,
+            PatientService patientService) {
         this.appointmentService = appointmentService;
         this.doctorService = doctorService;
+        this.patientService = patientService;
     }
 
     @GetMapping("/doctor-appointments")
@@ -53,10 +59,24 @@ public class AppointmentController {
 
     @PostMapping("/saveAppointment")
     public String saveAppointment(@ModelAttribute("appointment") Appointment appointment, Principal principal) {
-        String email = principal.getName();
-        Doctor doctor = doctorService.findByEmail(email);
-        List<Appointment> doctorAppointments = doctor.getAppointments();
+        String doctorEmail = principal.getName();
+        Doctor doctor = doctorService.findByEmail(doctorEmail);
+        String patientEmail = appointment.getPatientEmail();
+        Patient patient = patientService.findByEmail(patientEmail);
+        // List<Appointment> doctorAppointments = doctor.getAppointments();
+        appointment.setPatientId(patient.getId());
+        appointment.setPatientFirstName(patient.getFirstName());
+        appointment.setPatientLastName(patient.getLastName());
+        appointment.setPatientPhone(patient.getPhoneNumber());
+        appointment.setPatientAddress(patient.getAddress());
+        appointment.setDoctorId(doctor.getId());
+        appointment.setDoctorFirstName(doctor.getFirstName());
+        appointment.setDoctorLastName(doctor.getLastName());
+        appointment.setDoctorEmail(doctor.getEmail());
+        appointment.setDoctorPhone(doctor.getPhoneNumber());
+        appointment.setDoctorAddress(doctor.getAddress());
         appointmentService.saveAppointment(appointment);
+        System.out.println(doctor.getAppointments());
         return "redirect:/doctor-appointments";
         // save doctor instead of appointment so that a cascading save is run
     }
