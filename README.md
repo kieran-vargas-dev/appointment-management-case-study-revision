@@ -34,6 +34,8 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 - As a user, I want to be able to log in to this account so that I can retrieve this information.
 
+- As a patient, I want to be able to browse care providers, and view their contact information.
+
 - As a patient, I want to see all of my upcoming appointments in a list-like view, displaying the date/time of the appointment and the general purpose of it.
 
 - As a doctor, I want to see all of my upcoming appointments in a list-like view, displaying the date/time of the appointment and the patient's name so that
