@@ -62,6 +62,10 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/21/2022 End of School Day: 92% complete
+
+I decided that the easiest and thus quickest method of setting up different user flows for this particular app is to branch in to two separate user flows starting from a different homepage view being presented upon login contingent on what type of user is being logged in. I've set up two distinct navbars each with their own navigation options to this end, and am working on implementing the selective display on login functionality. Past this, it's tests and styling.
+
 4/20/2022 End of School Day: 88% complete
 
 All of my user security and CRUD functionality is implemented without any failure. I still need to write tests and navigation functionality, as well as leverage Spring security to protect endpoints/extend permissions, but outside of that the only thing remaining to do is styling.

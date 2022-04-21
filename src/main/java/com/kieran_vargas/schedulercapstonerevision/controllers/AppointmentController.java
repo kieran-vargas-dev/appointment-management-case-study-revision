@@ -87,22 +87,43 @@ public class AppointmentController {
         patientService.save(patient);
         doctorService.save(doctor);
         return "redirect:/doctor-appointments";
-        // save doctor instead of appointment so that a cascading save is run
     }
 
     @GetMapping("/updateAppointmentForm/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
-
+    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model, Principal principal) {
         Appointment appointment = appointmentService.getAppointmentById(id);
-
         model.addAttribute("appointment", appointment);
         return "doctor-update-appointment";
     }
 
+    @PostMapping("/updateAppointment")
+    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment, Principal principal,
+            Model model) {
+        appointmentService.saveAppointment(appointment);
+        String email = principal.getName();
+        Doctor doctor = doctorService.findByEmail(email);
+        List<Appointment> appointments = doctor.getAppointments();
+        model.addAttribute("listAppointments", appointments);
+        return "redirect:/doctor-appointments";
+    }
+
     @GetMapping("/deleteAppointment/{id}")
-    public String deleteAppointment(@PathVariable(value = "id") long id) {
+    public String deleteAppointment(@PathVariable(value = "id") long id, Principal principal) {
+
+        Appointment appointment = appointmentService.getAppointmentById(id);
+        String doctorEmail = principal.getName();
+        Doctor doctor = doctorService.findByEmail(doctorEmail);
+        String patientEmail = appointment.getPatientEmail();
+        Patient patient = patientService.findByEmail(patientEmail);
+        List<Appointment> doctorAppointments = doctor.getAppointments();
+        List<Appointment> patientAppointments = patient.getAppointments();
+        patientAppointments.remove(appointment);
+        doctorAppointments.remove(appointment);
+        patientService.save(patient);
+        doctorService.save(doctor);
         this.appointmentService.deleteAppointmentById(id);
         return "redirect:/doctor-appointments";
+
     }
 
     @GetMapping("/viewAppointment/{id}")

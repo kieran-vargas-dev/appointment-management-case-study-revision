@@ -1,8 +1,13 @@
 package com.kieran_vargas.schedulercapstonerevision.controllers;
 
+import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
 
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
+import com.kieran_vargas.schedulercapstonerevision.security.Role;
+import com.kieran_vargas.schedulercapstonerevision.security.User;
+import com.kieran_vargas.schedulercapstonerevision.security.UserService;
 import com.kieran_vargas.schedulercapstonerevision.services.DoctorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +18,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ApplicationController {
 
+    @Autowired
     private DoctorService doctorService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/")
-    public String root() {
-        return "index";
+    public String root(Principal principal) {
+        String currentUserEmail = principal.getName();
+        User currentUser = userService.findByEmail(currentUserEmail);
+        Collection<Role> currentUserRoles = currentUser.getRoles();
+        if (currentUserRoles.contains(new Role("ROLE_DOCTOR"))) {
+            return "doctor-homepage";
+        } else {
+            return "patient-homepage";
+        }
     }
 
     @GetMapping("/login")

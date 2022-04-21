@@ -8,16 +8,38 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
+<nav>
+    <a href="/addAppointmentForm">Add New Appointment</a>
+    <a href="/doctor-appointments">View Appointments</a>
+    <a href="/logout">Logout</a>
+</nav>
+
 <body>
     <div class="container">
         <h1>Appointment</h1>
         <hr>
         <h2>Update Appointment</h2>
 
-        <form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="POST">
+        <form action="#" th:action="@{/updateAppointment}" th:object="${appointment}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{id}" />
+
+            <input type="hidden" th:field="*{doctor}" />
+
+            <input type="hidden" th:field="*{doctorId}" />
+
+            <input type="hidden" th:field="*{doctorFirstName}" />
+
+            <input type="hidden" th:field="*{doctorLastName}" />
+
+            <input type="hidden" th:field="*{doctorEmail}" />
+
+            <input type="hidden" th:field="*{doctorPhone}" />
+
+            <input type="hidden" th:field="*{doctorAddress}" />
+
+            <input type="hidden" th:field="*{patient}" />
 
             <span>Appointment Date:</span><input type="text" th:field="*{appointmentDate}" class="form-control mb-4 col-4">
 
