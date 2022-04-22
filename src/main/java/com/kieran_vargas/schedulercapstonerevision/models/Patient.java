@@ -38,14 +38,13 @@ public class Patient {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Appointment> appointments;
 
-    private String password;
-
     // Constructors
+
     public Patient() {
     }
 
     public Patient(long id, String firstName, String lastName, String email, String phoneNumber, String address,
-            List<Appointment> appointments, String password) {
+            List<Appointment> appointments) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,8 +52,9 @@ public class Patient {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.appointments = appointments;
-        this.password = password;
     }
+
+    // Getters and Setters
 
     public long getId() {
         return id;
@@ -110,14 +110,6 @@ public class Patient {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
 }

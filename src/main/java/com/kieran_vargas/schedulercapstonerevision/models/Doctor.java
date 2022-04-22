@@ -38,20 +38,13 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Appointment> appointments;
 
-    private String password;
-
-    // @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    // @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id",
-    // referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name =
-    // "role_id", referencedColumnName = "id"))
-    // private Collection<Role> roles;
-
     // Constructors
+
     public Doctor() {
     }
 
     public Doctor(long id, String firstName, String lastName, String email, String phoneNumber, String address,
-            List<Appointment> appointments, String password) {
+            List<Appointment> appointments) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,8 +52,9 @@ public class Doctor {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.appointments = appointments;
-        this.password = password;
     }
+
+    // Getters and Setters
 
     public long getId() {
         return id;
@@ -118,12 +112,62 @@ public class Doctor {
         this.appointments = appointments;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((address == null) ? 0 : address.hashCode());
+        result = prime * result + ((appointments == null) ? 0 : appointments.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+        return result;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Doctor other = (Doctor) obj;
+        if (address == null) {
+            if (other.address != null)
+                return false;
+        } else if (!address.equals(other.address))
+            return false;
+        if (appointments == null) {
+            if (other.appointments != null)
+                return false;
+        } else if (!appointments.equals(other.appointments))
+            return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (firstName == null) {
+            if (other.firstName != null)
+                return false;
+        } else if (!firstName.equals(other.firstName))
+            return false;
+        if (id != other.id)
+            return false;
+        if (lastName == null) {
+            if (other.lastName != null)
+                return false;
+        } else if (!lastName.equals(other.lastName))
+            return false;
+        if (phoneNumber == null) {
+            if (other.phoneNumber != null)
+                return false;
+        } else if (!phoneNumber.equals(other.phoneNumber))
+            return false;
+        return true;
     }
 
     // public Collection<Role> getRoles() {

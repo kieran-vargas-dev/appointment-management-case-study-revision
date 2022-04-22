@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
     Appointment findAppointmentById(long id);
 
+    // The findByDoctorId and findByPatientId functions exist for use by an
+    // administrative role that will be implemented in the future.
+
     List<Appointment> findByDoctorId(long doctorId);
 
     List<Appointment> findByPatientId(long patientId);

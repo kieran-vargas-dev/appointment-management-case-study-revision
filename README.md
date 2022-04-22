@@ -62,6 +62,10 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/22/2022 End of School Day: 95% complete
+
+Started writing tests today, all of which pass. It's a simple matter of echoing the written tests in other test classes since the logic across all classes is very similar. The login redirect functionality is now implemented, so I need to write the user landing pages for each login case, but this will be quite simple as the pages themselves will have minimal features with nothing more logically complicated than a few redirect buttons. All that truly remains is styling.
+
 4/21/2022 End of School Day: 92% complete
 
 I decided that the easiest and thus quickest method of setting up different user flows for this particular app is to branch in to two separate user flows starting from a different homepage view being presented upon login contingent on what type of user is being logged in. I've set up two distinct navbars each with their own navigation options to this end, and am working on implementing the selective display on login functionality. Past this, it's tests and styling.

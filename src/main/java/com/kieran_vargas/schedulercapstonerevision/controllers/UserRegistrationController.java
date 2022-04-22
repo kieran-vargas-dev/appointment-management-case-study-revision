@@ -78,7 +78,6 @@ public class UserRegistrationController {
         doctor.setLastName(userDto.getLastName());
         doctor.setPhoneNumber(userDto.getPhone());
         doctor.setAddress(userDto.getAddress());
-        doctor.setPassword(userDto.getPassword());
         return doctor;
     }
 
@@ -89,7 +88,6 @@ public class UserRegistrationController {
         patient.setLastName(userDto.getLastName());
         patient.setPhoneNumber(userDto.getPhone());
         patient.setAddress(userDto.getAddress());
-        patient.setPassword(userDto.getPassword());
         return patient;
     }
 

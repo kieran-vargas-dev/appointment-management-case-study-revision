@@ -49,8 +49,7 @@ public class AppointmentServiceImplementation implements AppointmentService {
 
     @Override
     public List<Appointment> getPatientAppointments(long patientId) {
-        // TODO Auto-generated method stub
-        return null;
+        return appointmentRepository.findByPatientId(patientId);
     }
 
 }

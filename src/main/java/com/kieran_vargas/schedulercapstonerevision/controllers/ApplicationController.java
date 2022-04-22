@@ -29,11 +29,13 @@ public class ApplicationController {
         String currentUserEmail = principal.getName();
         User currentUser = userService.findByEmail(currentUserEmail);
         Collection<Role> currentUserRoles = currentUser.getRoles();
-        if (currentUserRoles.contains(new Role("ROLE_DOCTOR"))) {
-            return "doctor-homepage";
-        } else {
-            return "patient-homepage";
+        for (Role currentUserRole : currentUserRoles) {
+            String roleName = currentUserRole.getName();
+            if (roleName.equals("ROLE_DOCTOR")) {
+                return "doctor-homepage";
+            }
         }
+        return "patient-homepage";
     }
 
     @GetMapping("/login")
