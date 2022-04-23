@@ -7,6 +7,8 @@ import com.kieran_vargas.schedulercapstonerevision.models.Patient;
 
 public interface PatientService {
 
+    List<Patient> getAllPatients();
+
     List<Appointment> getPatientAppointments(long id);
 
     Patient findByEmail(String email);

@@ -5,17 +5,23 @@ import java.util.List;
 
 import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
 import com.kieran_vargas.schedulercapstonerevision.models.Doctor;
+import com.kieran_vargas.schedulercapstonerevision.repository.DoctorRepository;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DoctorServiceImplementationTest {
 
     @Autowired
     private DoctorService doctorService;
+
+    private DoctorRepository doctorRepository;
 
     // @BeforeEach
     // Doctor createTestDoctor() {
@@ -24,6 +30,32 @@ public class DoctorServiceImplementationTest {
     // new ArrayList<Appointment>());
     // return testDoctor;
     // }
+
+    @Test
+    void testGetAllDoctors() {
+        List<Doctor> allDoctors = doctorService.getAllDoctors();
+        int amountDoctorsBeforeAddingDoctor = allDoctors.size();
+        Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
+                new ArrayList<Appointment>());
+        doctorService.save(testDoctor);
+        int amountDoctorsAfterAddingDoctor = doctorService.getAllDoctors().size();
+
+        Assertions.assertThat(amountDoctorsAfterAddingDoctor).isEqualTo(amountDoctorsBeforeAddingDoctor + 1);
+        Assertions.assertThat(allDoctors.contains(testDoctor));
+    }
+
+    @Test
+    void testSave() {
+        List<Doctor> allDoctors = doctorService.getAllDoctors();
+        int amountDoctorsBeforeAddingDoctor = allDoctors.size();
+        Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
+                new ArrayList<Appointment>());
+        doctorService.save(testDoctor);
+        int amountDoctorsAfterAddingDoctor = doctorService.getAllDoctors().size();
+
+        Assertions.assertThat(amountDoctorsAfterAddingDoctor).isEqualTo(amountDoctorsBeforeAddingDoctor + 1);
+        Assertions.assertThat(allDoctors.contains(testDoctor));
+    }
 
     @Test
     void testFindByEmail() {
@@ -35,36 +67,10 @@ public class DoctorServiceImplementationTest {
         }
     }
 
-    @Test
-    void testGetAllDoctors() {
-        DoctorService doctorService = this.doctorService;
-        List<Doctor> allDoctors = doctorService.getAllDoctors();
-        int amountDoctorsBeforeAddingDoctor = allDoctors.size();
-        Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
-                new ArrayList<Appointment>());
-        doctorService.save(testDoctor);
-        int amountDoctorsAfterAddingDoctor = doctorService.getAllDoctors().size();
-
-        Assertions.assertThat(amountDoctorsAfterAddingDoctor).isEqualTo(amountDoctorsBeforeAddingDoctor + 1);
-        Assertions.assertThat(allDoctors.contains(testDoctor));
+    @AfterAll
+    void cleanUpDoctorTests() {
+        Doctor testDoctor = doctorRepository.findByEmail("test@doctor.com");
+        doctorRepository.delete(testDoctor);
     }
 
-    @Test
-    void testGetDoctorAppointments() {
-
-    }
-
-    @Test
-    void testSave() {
-        DoctorService doctorService = this.doctorService;
-        List<Doctor> allDoctors = doctorService.getAllDoctors();
-        int amountDoctorsBeforeAddingDoctor = allDoctors.size();
-        Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
-                new ArrayList<Appointment>());
-        doctorService.save(testDoctor);
-        int amountDoctorsAfterAddingDoctor = doctorService.getAllDoctors().size();
-
-        Assertions.assertThat(amountDoctorsAfterAddingDoctor).isEqualTo(amountDoctorsBeforeAddingDoctor + 1);
-        Assertions.assertThat(allDoctors.contains(testDoctor));
-    }
 }

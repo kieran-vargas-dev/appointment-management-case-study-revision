@@ -19,6 +19,10 @@ public class PatientServiceImplementation implements PatientService {
         this.patientRepository = patientRepository;
     }
 
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
+    }
+
     public Patient findByEmail(String email) {
         return patientRepository.findByEmail(email);
     }
@@ -33,4 +37,5 @@ public class PatientServiceImplementation implements PatientService {
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
     }
+
 }
