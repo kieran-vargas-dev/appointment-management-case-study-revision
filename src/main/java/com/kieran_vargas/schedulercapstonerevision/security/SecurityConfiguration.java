@@ -6,38 +6,44 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    // We will create userService class in upcoming step
     @Autowired
     private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
         http
                 .authorizeRequests()
-                    .antMatchers(
+                .antMatchers(
                         "/registration**",
                         "/js/**",
                         "/css/**",
                         "/img/**",
-                        "/webjars/**").permitAll()
-                    .anyRequest().authenticated()
+                        "/webjars/**")
+                .permitAll()
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                        .loginPage("/login").permitAll()
-                    .and()
-                        .logout()
-                            .invalidateHttpSession(true)
-                            .clearAuthentication(true)
-                            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                            .logoutSuccessUrl("/login?logout")
-                            .permitAll();
-        // @formatter:on
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/static/**");
     }
 
     @Bean
