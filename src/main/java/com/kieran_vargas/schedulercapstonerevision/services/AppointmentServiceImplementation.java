@@ -3,8 +3,11 @@ package com.kieran_vargas.schedulercapstonerevision.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.kieran_vargas.schedulercapstonerevision.exceptions.PatientNotFoundException;
 import com.kieran_vargas.schedulercapstonerevision.models.Appointment;
+import com.kieran_vargas.schedulercapstonerevision.models.Patient;
 import com.kieran_vargas.schedulercapstonerevision.repository.AppointmentRepository;
+import com.kieran_vargas.schedulercapstonerevision.repository.PatientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,9 @@ public class AppointmentServiceImplementation implements AppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     @Override
     public List<Appointment> getAllAppointments() {
@@ -27,14 +33,19 @@ public class AppointmentServiceImplementation implements AppointmentService {
         if (optional.isPresent()) {
             appointment = optional.get();
         } else {
-            throw new RuntimeException("Appointment not found for ID :: " + id);
+            throw new RuntimeException("Appointment not found for ID : " + id);
         }
         return appointment;
     }
 
     @Override
     public void saveAppointment(Appointment appointment) {
-        this.appointmentRepository.save(appointment);
+        Optional<Patient> optionalPatient = patientRepository.findById(appointment.getPatientId());
+        if (optionalPatient.isPresent()) {
+            this.appointmentRepository.save(appointment);
+        } else {
+            throw new PatientNotFoundException();
+        }
     }
 
     @Override

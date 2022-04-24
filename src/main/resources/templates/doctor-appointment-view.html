@@ -50,7 +50,7 @@
             </thead>
             <tbody>
                 <tr th:each="appointment : ${listAppointments}">
-                    <td th:text="${appointment.patientFirstName}"></td>
+                    <td th:text="${appointment.patientFirstName + ' ' + appointment.patientLastName}"></td>
                     <td th:text="${appointment.patientEmail}"></td>
                     <td th:text="${appointment.appointmentDate}"></td>
                     <td th:text="${appointment.appointmentOverview}"></td>
