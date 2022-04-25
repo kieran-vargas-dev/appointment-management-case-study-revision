@@ -32,10 +32,10 @@ public class ApplicationController {
         for (Role currentUserRole : currentUserRoles) {
             String roleName = currentUserRole.getName();
             if (roleName.equals("ROLE_DOCTOR")) {
-                return "doctor-homepage";
+                return "doctor-appointments";
             }
         }
-        return "patient-homepage";
+        return "patient-appointments";
     }
 
     @GetMapping("/login")
