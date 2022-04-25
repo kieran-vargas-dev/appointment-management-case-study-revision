@@ -43,16 +43,16 @@
                     <th>Email</th>
                     <th>Phone Number</th>
                     <th>Medical Practice</th>
-                    <th> Actions </th>
+                    <th>Contact</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="doctor : ${listDoctors}">
-                    <td th:text="${doctor.lastName}"></td>
+                    <td th:text="${doctor.firstName + ' ' + doctor.lastName}"></td>
                     <td th:text="${doctor.email}"></td>
                     <td th:text="${doctor.phoneNumber}"></td>
                     <td th:text="${doctor.address}"></td>
-                    <td><a th:href="'mailto:' + ${doctor.email}" class="btn btn-info">Contact By Email </a></td>
+                    <td><a th:href="'mailto:' + ${doctor.email}" class="btn btn-info">Contact By Email</a></td>
                     </td>
                 </tr>
             </tbody>

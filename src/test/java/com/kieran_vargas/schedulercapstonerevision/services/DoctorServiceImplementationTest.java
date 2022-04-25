@@ -21,21 +21,14 @@ public class DoctorServiceImplementationTest {
     @Autowired
     private DoctorService doctorService;
 
+    @Autowired
     private DoctorRepository doctorRepository;
-
-    // @BeforeEach
-    // Doctor createTestDoctor() {
-    // Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com",
-    // "480-254-2011", "Test Address",
-    // new ArrayList<Appointment>());
-    // return testDoctor;
-    // }
 
     @Test
     void testGetAllDoctors() {
         List<Doctor> allDoctors = doctorService.getAllDoctors();
         int amountDoctorsBeforeAddingDoctor = allDoctors.size();
-        Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
+        Doctor testDoctor = new Doctor(999998, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
                 new ArrayList<Appointment>());
         doctorService.save(testDoctor);
         int amountDoctorsAfterAddingDoctor = doctorService.getAllDoctors().size();
@@ -48,7 +41,7 @@ public class DoctorServiceImplementationTest {
     void testSave() {
         List<Doctor> allDoctors = doctorService.getAllDoctors();
         int amountDoctorsBeforeAddingDoctor = allDoctors.size();
-        Doctor testDoctor = new Doctor(999999, "Testcase", "One", "test@doctor.com", "480-254-2011", "Test Address",
+        Doctor testDoctor = new Doctor(999999, "Testcase", "Two", "test2@doctor.com", "480-254-2011", "Test Address",
                 new ArrayList<Appointment>());
         doctorService.save(testDoctor);
         int amountDoctorsAfterAddingDoctor = doctorService.getAllDoctors().size();
@@ -60,7 +53,7 @@ public class DoctorServiceImplementationTest {
     @Test
     void testFindByEmail() {
         List<Doctor> allDoctors = doctorService.getAllDoctors();
-        Doctor testDoctor = doctorService.findByEmail("testdoctor01@development.com");
+        Doctor testDoctor = doctorService.findByEmail("test@doctor.com");
         if (testDoctor != null) {
             Doctor testDoctorInRepo = allDoctors.get(0);
             Assertions.assertThat(testDoctor.equals(testDoctorInRepo));
@@ -70,7 +63,9 @@ public class DoctorServiceImplementationTest {
     @AfterAll
     void cleanUpDoctorTests() {
         Doctor testDoctor = doctorRepository.findByEmail("test@doctor.com");
+        Doctor testDoctor2 = doctorRepository.findByEmail("test2@doctor.com");
         doctorRepository.delete(testDoctor);
+        doctorRepository.delete(testDoctor2);
     }
 
 }
