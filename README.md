@@ -62,6 +62,9 @@ The doctor and patient will both be presented with a list of all of their upcomi
 
 ### Progress updates
 
+4/24/2022 End of Day: 98% complete
+Everything is styled and looks nice. Working on page redirect logic, but worst case scenario, those pages aren't really necessary and the app is fully functional and flows nicely if we default to using the appointments view as the user homepage. I would like to refactor a few things about the specific appointment view for both doctors and patients, and I'll get to that if I have time.
+
 4/22/2022 End of School Day: 95% complete
 
 Started writing tests today, all of which pass. It's a simple matter of echoing the written tests in other test classes since the logic across all classes is very similar. The login redirect functionality is now implemented, so I need to write the user landing pages for each login case, but this will be quite simple as the pages themselves will have minimal features with nothing more logically complicated than a few redirect buttons. All that truly remains is styling.

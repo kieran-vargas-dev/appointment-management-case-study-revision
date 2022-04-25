@@ -41,21 +41,23 @@
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{id}" />
 
-            <span>Appointment Date:</span><input type="text" th:field="*{appointmentDate}" class="form-control mb-4 col-4">
+            <span>Appointment Date:</span><input type="text" th:field="*{appointmentDate}" class="form-control mb-4 col-4" disabled readonly>
             
-            <span>Appointment Overview:</span><input type="text" th:field="*{appointmentOverview}" class="form-control mb-4 col-4">
+            <span>Appointment Overview:</span><input type="text" th:field="*{appointmentOverview}" class="form-control mb-4 col-4" disabled readonly>
 
-            <span>Doctor ID:</span><input type="text" th:field="*{doctorId}" class="form-control mb-4 col-4">
+            <span>Reported Symptoms:</span><input type="text" th:field="*{patientSymptoms}" class="form-control mb-4 col-4" disabled readonly>
 
-            <span>Doctor First Name:</span><input type="text" th:field="*{doctorFirstName}" class="form-control mb-4 col-4">
+            <span>Doctor ID:</span><input type="text" th:field="*{doctorId}" class="form-control mb-4 col-4" disabled readonly>
 
-            <span>Doctor Last Name:</span><input type="text" th:field="*{doctorLastName}" class="form-control mb-4 col-4">
+            <span>Doctor First Name:</span><input type="text" th:field="*{doctorFirstName}" class="form-control mb-4 col-4" disabled readonly>
 
-            <span>Doctor Email:</span><input type="text" th:field="*{doctorEmail}" class="form-control mb-4 col-4">
+            <span>Doctor Last Name:</span><input type="text" th:field="*{doctorLastName}" class="form-control mb-4 col-4" disabled readonly>
 
-            <span>Doctor Phone Number:</span><input type="text" th:field="*{doctorPhone}" class="form-control mb-4 col-4">
+            <span>Doctor Email:</span><input type="text" th:field="*{doctorEmail}" class="form-control mb-4 col-4" disabled readonly>
 
-            <span>Medical Practice:</span><input type="text" th:field="*{doctorAddress}" class="form-control mb-4 col-4">
+            <span>Doctor Phone Number:</span><input type="text" th:field="*{doctorPhone}" class="form-control mb-4 col-4" disabled readonly>
+
+            <span>Medical Practice:</span><input type="text" th:field="*{doctorAddress}" class="form-control mb-4 col-4" disabled readonly>
 
         </form>
 
